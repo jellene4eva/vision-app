@@ -1,14 +1,28 @@
 <ion-header>
-  <ion-toolbar>
-    <ion-title>
-      Ionic Blank
-    </ion-title>
-  </ion-toolbar>
+    <ion-toolbar>
+        <ion-button fill="clear" slot="end" (click)="save()">
+            <ion-icon slot="start" name="save"></ion-icon>
+            Save
+        </ion-button>
+    </ion-toolbar>
 </ion-header>
 
 <ion-content>
-  <div class="ion-padding">
-    The world is your oyster.
-    <p>If you get lost, the <a target="_blank" rel="noopener" href="https://ionicframework.com/docs/">docs</a> will be your guide.</p>
-  </div>
+    <img *ngIf="currentImage" [src]="currentImage" />
+    <ion-row>
+        <ion-chip *ngFor="let tag of tags">
+            {{ tag.description }}
+        </ion-chip>
+    </ion-row>
 </ion-content>
+<ion-footer>
+    <ion-row class="footer-toolbar">
+        <ion-fab-button (click)="takePicture()" class="take-picture">
+            <ion-icon name="camera"></ion-icon>
+        </ion-fab-button>
+
+        <ion-avatar *ngIf="lastUpload" class="last-upload" routerLink="/folders">
+            <img [src]="lastUpload.image" />
+        </ion-avatar>
+    </ion-row>
+</ion-footer>
